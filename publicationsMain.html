@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -294,6 +294,348 @@
         </div>
     </main>
 
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Publications</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+            --step-completed-bg: #10b981;
+            --step-completed-text: #047857;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f3ff;
+        }
+        .sidebar {
+            background-color: #ede9fe;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+        .progress-step .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        .progress-step.completed .step-number {
+            background-color: var(--step-completed-bg);
+        }
+        .progress-step.completed .step-text {
+            color: var(--step-completed-text);
+            font-weight: 500;
+        }
+        .progress-step.active .step-number {
+            background-color: #8b5cf6;
+        }
+         .progress-step.active .step-text {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+        .progress-line {
+            height: 2px;
+            background-color: #d1d5db;
+            flex-grow: 1;
+            margin: 0 8px;
+        }
+        .progress-line.completed {
+             background-color: var(--step-completed-bg);
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        .nav-item.active {
+            background-color: #d8b4fe;
+            color: #6d28d9;
+            font-weight: 500;
+        }
+        .nav-item .material-icons {
+            margin-right: 12px;
+        }
+        .radio-option {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.2s ease-in-out;
+        }
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+        .radio-option input[type="radio"]:checked + .radio-label {
+            font-weight: 600;
+        }
+        .radio-option.yes:has(input:checked) {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .radio-option.no:has(input:checked) {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+        .input-field {
+            @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500;
+        }
+        .label-text {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .hidden-field {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+    <aside class="w-64 sidebar p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center mb-12">
+                <span class="material-icons text-3xl text-purple-700 mr-2">all_inclusive</span>
+                <span class="text-2xl font-bold text-gray-800">ICFAI</span>
+            </div>
+            <nav>
+                 <a class="nav-item" href="./personalInfo.html">
+                    <span class="material-icons">person</span>
+                    Personal Info
+                </a>
+                <a class="nav-item " href="./ssc.html">
+                    <span class="material-icons">school</span>
+                    Education
+                </a>
+                <a class="nav-item " href="./expMain.html">
+                    <span class="material-icons">work</span>
+                    Experience
+                </a>
+                <a class="nav-item active" href="./publicationsMain.html">
+                    <span class="material-icons">article</span>
+                    Publications
+                </a>
+                <a class="nav-item " href="./preferences.html">
+                    <span class="material-icons">tune</span>
+                    Preferences
+                </a>
+                <a class="nav-item " href="./aboutIfhe.html">
+                    <span class="material-icons">info</span>
+                    About IFHE
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 bg-white rounded-lg shadow-md flex items-center">
+            <div>
+                <p class="font-semibold text-gray-800">Need a help?</p>
+                <p class="text-sm text-gray-500">chat with live support</p>
+            </div>
+            <span class="material-icons ml-auto text-purple-600 text-3xl">headset_mic</span>
+        </div>
+    </aside>
+    <main class="flex-1 p-8">
+        <div class="flex items-center mb-8">
+            <div class="progress-step completed">
+                <div class="step-number">
+                    <span class="material-icons text-base">check</span>
+                </div>
+                <div class="step-text">Personal Info</div>
+            </div>
+            <div class="progress-line completed"></div>
+            <div class="progress-step completed">
+                <div class="step-number">
+                    <span class="material-icons text-base">check</span>
+                </div>
+                <div class="step-text">Education</div>
+            </div>
+            <div class="progress-line completed"></div>
+            <div class="progress-step completed">
+                <div class="step-number">
+                    <span class="material-icons text-base">check</span>
+                </div>
+                <div class="step-text">Experience</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step active">
+                <div class="step-number">4</div>
+                <div class="step-text">Publications</div>
+            </div>
+        </div>
+        <div class="form-container p-8">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Publication Details</h1>
+            <form>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you have any publications?</label>
+                    <div class="flex items-center space-x-4">
+                        <label class="radio-option yes">
+                            <input type="radio" name="has-publications" value="yes" onchange="togglePublications()">
+                            <span class="radio-label">Yes</span>
+                        </label>
+                        <label class="radio-option no">
+                            <input type="radio" name="has-publications" value="no" onchange="togglePublications()">
+                            <span class="radio-label">No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="publications-section" class="hidden-field">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="label-text" for="h-index">h-index</label>
+                            <input class="input-field" id="h-index" name="h-index" type="text" />
+                        </div>
+                        <div>
+                            <label class="label-text" for="i10-index">i10-index</label>
+                            <input class="input-field" id="i10-index" name="i10-index" type="text" />
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Publication</h2>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="label-text" for="pub-title">Title of Publication</label>
+                                    <input class="input-field" id="pub-title" name="pub-title" type="text" />
+                                </div>
+                                <div>
+                                    <label class="label-text" for="pub-category">Category</label>
+                                    <select class="input-field" id="pub-category" name="pub-category">
+                                        <option>Select Category</option>
+                                        <option>Journal</option>
+                                        <option>Conference</option>
+                                        <option>Book Chapter</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="label-text" for="pub-type">Type</label>
+                                    <select class="input-field" id="pub-type" name="pub-type">
+                                        <option>Select Type</option>
+                                        <option>National</option>
+                                        <option>International</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="label-text" for="pub-in">Published In</label>
+                                    <input class="input-field" id="pub-in" name="pub-in" type="text" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="label-text" for="pub-month-year">Month and Year</label>
+                                    <input class="input-field" id="pub-month-year" name="pub-month-year" type="month" />
+                                </div>
+                                <div>
+                                    <label class="label-text" for="pub-status">Research Status</label>
+                                    <select class="input-field" id="pub-status" name="pub-status">
+                                        <option>Select Status</option>
+                                        <option>Published</option>
+                                        <option>Under Review</option>
+                                        <option>In Press</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="label-text" for="impact-factor">Impact Factor / Quartile</label>
+                                    <input class="input-field" id="impact-factor" name="impact-factor" type="text" />
+                                </div>
+                                <div>
+                                    <label class="label-text" for="citation-count">Citation Count</label>
+                                    <input class="input-field" id="citation-count" name="citation-count" type="number" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="label-text" for="collaboration">Collaboration</label>
+                                    <select class="input-field" id="collaboration" name="collaboration">
+                                        <option>Select</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="label-text" for="remarks">Remarks</label>
+                                    <input class="input-field" id="remarks" name="remarks" type="text" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end mt-6">
+                            <button
+                                class="flex items-center bg-purple-100 text-purple-700 font-bold py-2 px-4 rounded-lg hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                                type="button">
+                                <span class="material-icons mr-2">add</span>
+                                Add Publication
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8 pt-8 border-t border-gray-200">
+                    <button
+                        class="bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                        type="button">
+                        <a href="./expMain.html">Back</a>
+                    </button>
+                    <button
+                        class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                        type="submit">
+                        <a href="./preferences.html">Save &amp; Continue</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function togglePublications() {
+            const hasPublications = document.querySelector('input[name="has-publications"]:checked').value === 'yes';
+            const publicationsSection = document.getElementById('publications-section');
+            
+            if (hasPublications) {
+                publicationsSection.classList.remove('hidden-field');
+            } else {
+                publicationsSection.classList.add('hidden-field');
+            }
+        }
+
+        // Initialize the form based on default selection
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default to "No" if no selection exists
+            if (!document.querySelector('input[name="has-publications"]:checked')) {
+                document.querySelector('input[name="has-publications"][value="no"]').checked = true;
+                togglePublications();
+            }
+        });
+    </script>
 </body>
 
 </html>
