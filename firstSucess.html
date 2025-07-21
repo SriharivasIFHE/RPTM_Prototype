@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Share Your Experience</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+            --step-completed-bg: #10b981;
+            --step-completed-text: #047857;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f3ff;
+        }
+        .sidebar {
+            background-color: #ede9fe;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+        .progress-step .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        .progress-step.completed .step-number {
+            background-color: var(--step-completed-bg);
+        }
+        .progress-step.completed .step-text {
+            color: var(--step-completed-text);
+            font-weight: 500;
+        }
+        .progress-step.active .step-number {
+            background-color: #8b5cf6;
+        }
+         .progress-step.active .step-text {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+        .progress-line {
+            height: 2px;
+            background-color: #d1d5db;
+            flex-grow: 1;
+            margin: 0 8px;
+        }
+        .progress-line.completed {
+             background-color: var(--step-completed-bg);
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        .nav-item.completed {
+            color: #10b981;
+        }
+        .nav-item.completed .material-icons {
+            color: #10b981;
+        }
+        .nav-item.active {
+            background-color: #d8b4fe;
+            color: #6d28d9;
+            font-weight: 500;
+        }
+        .nav-item .material-icons {
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+    <aside class="w-64 sidebar p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center mb-12">
+                <span class="material-icons text-3xl text-purple-700 mr-2">all_inclusive</span>
+                <span class="text-2xl font-bold text-gray-800">ICFAI</span>
+            </div>
+            <nav>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    Personal Info
+                </a>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    Education
+                </a>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    Experience
+                </a>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    Publications
+                </a>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    Preferences
+                </a>
+                <a class="nav-item completed" href="#">
+                    <span class="material-icons">check_circle</span>
+                    About IFHE
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 bg-white rounded-lg shadow-md flex items-center">
+            <div>
+                <p class="font-semibold text-gray-800">Need a help?</p>
+                <p class="text-sm text-gray-500">chat with live support</p>
+            </div>
+            <span class="material-icons ml-auto text-purple-600 text-3xl">headset_mic</span>
+        </div>
+    </aside>
+    <main class="flex-1 p-8 flex items-center justify-center">
+        <div class="form-container p-12 text-center max-w-2xl">
+            <div class="mb-6">
+                <span class="material-icons text-7xl text-green-500">check_circle_outline</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Application Filled Successfully!</h1>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Share Your Experience</h2>
+            <p class="text-gray-600 mb-6">
+                Thank you for completing your profile! We'd love to hear about your experience with our application
+                process.
+                Your feedback helps us improve and create a better experience for future candidates.
+            </p>
+            <p class="text-gray-600 mb-8">
+                Would you be willing to share your thoughts? It will only take a minute.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button
+                    class="bg-gray-200 text-gray-700 font-bold py-3 px-8 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                    type="button">
+                    <a href="./secondSuccess.html">Skip</a>
+                </button>
+                <button
+                    class="bg-purple-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                    type="button">
+                    <a href="./feedback.html">Share My Experience</a>
+                </button>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

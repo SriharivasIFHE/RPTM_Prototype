@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Education Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f3ff;
+        }
+
+        .sidebar {
+            background-color: #ede9fe;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-step .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        .progress-step.active .step-number {
+            background-color: #8b5cf6;
+        }
+
+        .progress-step.active .step-text {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+
+        .progress-line {
+            height: 2px;
+            background-color: #d1d5db;
+            flex-grow: 1;
+            margin: 0 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+        .nav-item.active {
+            background-color: #d8b4fe;
+            color: #6d28d9;
+            font-weight: 500;
+        }
+
+        .nav-item .material-icons {
+            margin-right: 12px;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+    <aside class="w-64 sidebar p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center mb-12">
+                <span class="material-icons text-3xl text-purple-700 mr-2">all_inclusive</span>
+                <span class="text-2xl font-bold text-gray-800">ICFAI</span>
+            </div>
+            <nav>
+                <a class="nav-item" href="./personalInfo.html">
+                    <span class="material-icons">person</span>
+                    Personal Info
+                </a>
+                <a class="nav-item active" href="./ssc.html">
+                    <span class="material-icons">school</span>
+                    Education
+                </a>
+                <a class="nav-item " href="./expMain.html">
+                    <span class="material-icons">work</span>
+                    Experience
+                </a>
+                <a class="nav-item" href="./publicationsMain.html">
+                    <span class="material-icons">article</span>
+                    Publications
+                </a>
+                <a class="nav-item" href="./preferences.html">
+                    <span class="material-icons">tune</span>
+                    Preferences
+                </a>
+                <a class="nav-item " href="./aboutIfhe.html">
+                    <span class="material-icons">info</span>
+                    About IFHE
+                </a>
+            </nav>
+        </div>
+        <div class="p-4 bg-white rounded-lg shadow-md flex items-center">
+            <div>
+                <p class="font-semibold text-gray-800">Need a help?</p>
+                <p class="text-sm text-gray-500">chat with live support</p>
+            </div>
+            <span class="material-icons ml-auto text-purple-600 text-3xl">headset_mic</span>
+        </div>
+    </aside>
+    <main class="flex-1 p-8">
+        <div class="flex items-center mb-8">
+            <div class="progress-step active">
+                <div class="step-number">1</div>
+                <div class="step-text text-purple-700 font-bold">SSC</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-number">2</div>
+                <div class="step-text text-gray-500">Intermediate</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-number">3</div>
+                <div class="step-text text-gray-500">Under Graduation</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <div class="step-text text-gray-500">Graduation</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-number">5</div>
+                <div class="step-text text-gray-500">Ph.D/Doctoral</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <div class="step-number">6</div>
+                <div class="step-text text-gray-500">Post Doctoral</div>
+            </div>
+        </div>
+        <div class="form-container p-8">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Education Details(SSC)</h1>
+            <form>
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="school">School/Place*</label>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                            id="school" name="school" placeholder="e.g., St. Xavier's High School" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="year">Year of
+                            Completion*</label>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                            id="year" name="year" placeholder="e.g., 2020" type="text" />
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Scoring System*</label>
+                    <div class="flex items-center space-x-6">
+                        <div class="flex items-center">
+                            <input class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" id="marks"
+                                name="scoring" type="radio" />
+                            <label class="ml-2 block text-sm text-gray-900" for="marks">
+                                Marks
+                            </label>
+                        </div>
+                        <div class="flex items-center">
+                            <input class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" id="grades"
+                                name="scoring" type="radio" />
+                            <label class="ml-2 block text-sm text-gray-900" for="grades">
+                                Grades
+                            </label>
+                        </div>
+                        <div class="flex items-center">
+                            <input class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" id="percentage"
+                                name="scoring" type="radio" />
+                            <label class="ml-2 block text-sm text-gray-900" for="percentage">
+                                Percentage
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="score">Enter Your Score*</label>
+                    <input
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
+                        id="score" name="score" placeholder="e.g., 9.5 CGPA / 95%" type="text" />
+                </div>
+                <div class="flex justify-end mt-8">
+                    <button
+                        class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                        type="submit">
+                        <a href="./inter.html">Save &amp; Continue</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Personal Info</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style type="text/tailwindcss">
+    :root {
+            --step-completed-bg: #10b981;
+            --step-completed-text: #047857;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f3ff;
+        }
+        .sidebar {
+            background-color: #ede9fe;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .progress-step {
+            display: flex;
+            align-items: center;
+        }
+        .progress-step .step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        .progress-step.completed .step-number {
+            background-color: var(--step-completed-bg);
+        }
+        .progress-step.completed .step-text {
+            color: var(--step-completed-text);
+            font-weight: 500;
+        }
+        .progress-step.active .step-number {
+            background-color: #8b5cf6;
+        }
+         .progress-step.active .step-text {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+        .progress-line {
+            height: 2px;
+            background-color: #d1d5db;
+            flex-grow: 1;
+            margin: 0 8px;
+        }
+        .progress-line.completed {
+             background-color: var(--step-completed-bg);
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        .nav-item.active {
+            background-color: #d8b4fe;
+            color: #6d28d9;
+            font-weight: 500;
+        }
+        .nav-item .material-icons {
+            margin-right: 12px;
+        }
+        .radio-option {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.2s ease-in-out;
+            margin-right: 16px;
+        }
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+        .radio-option:has(input:checked) {
+            border-color: #8b5cf6;
+            background-color: #f5f3ff;
+        }
+        .radio-option:has(input:checked) .custom-radio {
+            border-color: #8b5cf6;
+        }
+        .radio-option:has(input:checked) .custom-radio span {
+            transform: scale(1);
+        }
+        .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: all 0.2s ease-in-out;
+        }
+        .custom-radio span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #8b5cf6;
+            transform: scale(0);
+            transition: transform 0.2s ease-in-out;
+        }
+        .radio-label {
+            font-weight: 500;
+            color: #374151;
+        }
+        .input-field {
+            @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500;
+        }
+        .label-text {
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        .question-label {
+             @apply block text-base font-medium text-gray-800 mb-3;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+  <aside class="w-64 sidebar p-6 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center mb-12">
+        <span class="material-icons text-3xl text-purple-700 mr-2">all_inclusive</span>
+        <span class="text-2xl font-bold text-gray-800">ICFAI</span>
+      </div>
+      <nav>
+        <a class="nav-item active" href="#">
+          <span class="material-icons">person</span>
+          Personal Info
+        </a>
+        <a class="nav-item" href="./ssc.html">
+          <span class="material-icons">school</span>
+          Education
+        </a>
+        <a class="nav-item" href="./expMain.html">
+          <span class="material-icons">work</span>
+          Experience
+        </a>
+        <a class="nav-item" href="./publicationsMain.html">
+          <span class="material-icons">article</span>
+          Publications
+        </a>
+        <a class="nav-item" href="./preferences.html">
+          <span class="material-icons">tune</span>
+          Preferences
+        </a>
+        <a class="nav-item" href="./aboutIfhe.html">
+          <span class="material-icons">info</span>
+          About IFHE
+        </a>
+      </nav>
+    </div>
+    <div class="p-4 bg-white rounded-lg shadow-md flex items-center">
+      <div>
+        <p class="font-semibold text-gray-800">Need a help?</p>
+        <p class="text-sm text-gray-500">chat with live support</p>
+      </div>
+      <span class="material-icons ml-auto text-purple-600 text-3xl">headset_mic</span>
+    </div>
+  </aside>
+  <main class="flex-1 p-8">
+    <div class="flex items-center mb-8">
+      <div class="progress-step active">
+        <div class="step-number">1</div>
+        <div class="step-text">Personal Info</div>
+      </div>
+      
+    </div>
+    <div class="form-container p-8">
+      <h1 class="text-2xl font-bold text-gray-800 mb-2">Personal Info</h1>
+      <p class="text-gray-600 mb-6">Please provide your basic details.</p>
+      <form>
+        <div class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="label-text" for="name">Name <span class="text-red-500">*</span></label>
+              <input class="input-field" id="name" name="name" placeholder="Enter your full name" type="text" />
+            </div>
+            <div>
+              <label class="label-text" for="email">Email <span class="text-red-500">*</span></label>
+              <div class="flex items-center">
+                <input class="input-field rounded-r-none" id="email" name="email" placeholder="Enter your email address"
+                  type="email" />
+                <button class="bg-gray-200 text-gray-600 px-3 py-2 rounded-r-md hover:bg-gray-300" type="button">
+                  <span class="material-icons text-base">add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="label-text" for="mobile">Add Mobile Number <span class="text-red-500">*</span></label>
+            <div class="flex">
+              <input class="input-field w-20 rounded-r-none" id="country-code" name="country-code" placeholder="+91"
+                type="text" style="width: 20%;margin-right: 19px;" />
+              <div class="flex-grow flex items-center">
+                <input class="input-field rounded-none" id="mobile" name="mobile"
+                  placeholder="Enter your 10-digit mobile number" type="tel" />
+                <button class="bg-gray-200 text-gray-600 px-3 py-2 rounded-r-md hover:bg-gray-300" type="button">
+                  <span class="material-icons text-base">add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="label-text" for="address">Village/Town/City <span class="text-red-500">*</span></label>
+              <input class="input-field" id="address" name="address" placeholder="Enter your village/town/city"
+                type="text" />
+            </div>
+            <div>
+              <label class="label-text" for="district">District <span class="text-red-500">*</span></label>
+              <input class="input-field" id="district" name="district" placeholder="Enter your district" type="text" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="label-text" for="state">State <span class="text-red-500">*</span></label>
+              <input class="input-field" id="state" name="state" placeholder="Enter your state" type="text" />
+            </div>
+            <div>
+              <label class="label-text" for="pincode">Pincode <span class="text-red-500">*</span></label>
+              <input class="input-field" id="pincode" name="pincode" placeholder="Enter your 6-digit pincode"
+                type="text" />
+            </div>
+          </div>
+          <div>
+            <label class="label-text">Gender <span class="text-red-500">*</span></label>
+            <div class="flex items-center mt-2 space-x-4">
+              <label class="radio-option">
+                <input checked="" name="gender" type="radio" value="male" />
+                <div class="custom-radio"><span></span></div>
+                <span class="radio-label">Male</span>
+              </label>
+              <label class="radio-option">
+                <input name="gender" type="radio" value="female" />
+                <div class="custom-radio"><span></span></div>
+                <span class="radio-label">Female</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end mt-8 pt-8 border-t border-gray-200">
+          <button
+            class="bg-purple-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            type="submit">
+            Save &amp; Continue
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+</body>
+
+</html>
