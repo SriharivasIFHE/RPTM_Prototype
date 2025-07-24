@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Add Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #4a5568;
+            --sidebar-active-bg: #e0e7ff;
+            --sidebar-active-text: #3b82f6;
+            --sidebar-hover-bg: #f0f4f8;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid #e2e8f0;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            color: var(--sidebar-text);
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-item:hover {
+            background-color: var(--sidebar-hover-bg);
+            color: var(--sidebar-active-text);
+        }
+        .nav-item.active {
+            background-color: var(--sidebar-active-bg);
+            color: var(--sidebar-active-text);
+        }
+        .nav-item.active:before {
+            background-color: var(--sidebar-active-text);
+        }
+        .nav-item .material-icons {
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+        .nav-item:hover .material-icons {
+            transform: scale(1.1);
+        }
+        .search-input {
+            @apply w-full pl-10 pr-4 py-2 border border-transparent rounded-lg bg-gray-100 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+        }
+        .dashboard-card {
+            @apply bg-white rounded-xl shadow-md p-6;
+        }
+        .card-title {
+            @apply text-lg font-semibold text-gray-700 mb-4;
+        }
+        .filter-btn {
+             @apply bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm hover:bg-gray-300 transition;
+        }
+        .chart-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+    <aside class="w-72 sidebar p-6 flex-col justify-between hidden lg:flex">
+        <div>
+            <div class="flex items-center mb-16 pl-2">
+                <span class="material-icons text-4xl text-blue-600 mr-3">all_inclusive</span>
+                <span class="text-3xl font-bold text-gray-800">ICFAI</span>
+            </div>
+            <nav>
+                <a class="nav-item active" href="./dashboardMain.html">
+                    <span class="material-icons">dashboard</span> Dashboard
+                </a>
+                <a class="nav-item" href="#">
+                    <span class="material-icons">person_add</span> Faculty Recruitment
+                </a>
+                <a class="nav-item" href="./fdpDashboard.html">
+                    <span class="material-icons">school</span> FDP
+                </a>
+                <a class="nav-item" href="#">
+                    <span class="material-icons">lightbulb</span> FIOP
+                </a>
+                <a class="nav-item " href="#">
+                    <span class="material-icons">build</span> Workshops
+                </a>
+                <a class="nav-item" href="#">
+                    <span class="material-icons">favorite</span> Faculty Welfare
+                </a>
+                <a class="nav-item" href="#">
+                    <span class="material-icons">notifications</span> Notifications
+                </a>
+               
+            </nav>
+        </div>
+        <div>
+            <div class="flex items-center p-3 rounded-lg bg-gray-50 mb-4">
+                <img alt="Profile" class="w-12 h-12 rounded-full mr-4 border-2 border-white shadow-md"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3HrkyJYmKkPYKqRfzKg0i3q3v7q3CeKdqijJP79hjwq_ePCkvoMR7PWd7avdb_faBm_tMs4Mu-fKkkobqCil-e6bgkPlkTGtarayF5IvUk93XDZHxuYOlpOqdZSoEazxvWwe4UCT8okMZQJlT7vTuHQlzjObFAnTP25mBvD-FKZQCUFxIic_mBKaLf7K2qv3m5yWlwKfQfgn8oMW_M9WgkjWLhUuQvjaHuZtjBqks2H-DXIjwEpDyvJPyYZZMWUkSxkKpYNSyjZk" />
+                <div>
+                    <p class="font-bold text-gray-800">John Doe</p>
+                    <p class="text-sm text-gray-600">johndoe@icfai.com</p>
+                </div>
+            </div>
+            <a class="nav-item" href="#">
+                <span class="material-icons">logout</span> Logout
+            </a>
+        </div>
+    </aside>
+    <main class="flex-1">
+        <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+            <div class="relative w-full max-w-md ml-8">
+                <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">search</span>
+                <input class="search-input" placeholder="Search..." type="text" />
+            </div>
+            <div class="flex items-center mr-8">
+                <button class="p-2 rounded-full hover:bg-gray-100">
+                    <span class="material-icons text-gray-600">notifications</span>
+                </button>
+            </div>
+        </header>
+        <div class="p-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Workshops Dashboard</h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="dashboard-card col-span-1 md:col-span-2 lg:col-span-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="card-title">Total Workshops</h2>
+                        <div class="flex space-x-2">
+                            <button class="filter-btn">Year</button>
+                            <button class="filter-btn">Department</button>
+                            <button class="filter-btn">Type</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="mr-8">
+                            <p class="text-5xl font-bold text-blue-600">128</p>
+                            <p class="text-gray-500">Conducted</p>
+                        </div>
+                        <div class="flex-1 h-40">
+                            <canvas id="workshopsOverTimeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card col-span-1 md:col-span-2">
+                    <h2 class="card-title">Participant Statistics</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <div class="w-32 h-32 mx-auto">
+                                <canvas id="attendanceDonutChart"></canvas>
+                            </div>
+                            <p class="text-center text-sm text-gray-600">Attended vs Not Attended</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-green-600">1,250</p>
+                            <p class="text-gray-500 text-sm">Total Registered</p>
+                            <p class="text-3xl font-bold text-green-600 mt-2">1,100</p>
+                            <p class="text-gray-500 text-sm">Total Attended</p>
+                            <p class="text-3xl font-bold text-green-600 mt-2">88%</p>
+                            <p class="text-gray-500 text-sm">Attendance Rate</p>
+                            <p class="text-3xl font-bold text-green-600 mt-2">150</p>
+                            <p class="text-gray-500 text-sm">Repeat Participants</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card col-span-1 md:col-span-2">
+                    <h2 class="card-title">Department-wise Participation</h2>
+                    <div class="h-56">
+                        <canvas id="departmentBarChart"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-card col-span-1 md:col-span-2">
+                    <h2 class="card-title">Workshop Ratings / Feedback</h2>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="flex items-center">
+                            <span class="material-icons text-yellow-500">star</span>
+                            <span class="material-icons text-yellow-500">star</span>
+                            <span class="material-icons text-yellow-500">star</span>
+                            <span class="material-icons text-yellow-500">star</span>
+                            <span class="material-icons text-yellow-500">star_half</span>
+                        </div>
+                        <p class="font-bold text-xl text-gray-700">4.5</p>
+                        <p class="text-gray-500">Avg. Rating</p>
+                    </div>
+                    <div class="h-40">
+                        <canvas id="ratingsChart"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h2 class="card-title">Location / Mode</h2>
+                    <div class="w-32 h-32 mx-auto">
+                        <canvas id="locationDonutChart"></canvas>
+                    </div>
+                    <div class="flex justify-around mt-4 text-center text-sm">
+                        <div>
+                            <p class="font-bold text-lg">60%</p>
+                            <p class="text-gray-500">Online</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">30%</p>
+                            <p class="text-gray-500">Offline</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">10%</p>
+                            <p class="text-gray-500">Hybrid</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h2 class="card-title">Workshop Types</h2>
+                    <div class="w-32 h-32 mx-auto">
+                        <canvas id="typesDonutChart"></canvas>
+                    </div>
+                    <div class="flex justify-around mt-4 text-center text-sm">
+                        <div>
+                            <p class="font-bold text-lg">75%</p>
+                            <p class="text-gray-500">Technical</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">25%</p>
+                            <p class="text-gray-500">Non-Tech</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card col-span-1 md:col-span-2 lg:col-span-4">
+                    <h2 class="card-title">Top Workshops</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-600">
+                            <thead class="bg-gray-50 text-xs text-gray-700 uppercase">
+                                <tr>
+                                    <th class="px-6 py-3" scope="col">Workshop Name</th>
+                                    <th class="px-6 py-3" scope="col">Attendance</th>
+                                    <th class="px-6 py-3" scope="col">Rating</th>
+                                    <th class="px-6 py-3" scope="col">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" scope="row">AI in
+                                        Research</th>
+                                    <td class="px-6 py-4">120</td>
+                                    <td class="px-6 py-4">4.9</td>
+                                    <td class="px-6 py-4">3 Days</td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" scope="row">
+                                        Advanced Excel</th>
+                                    <td class="px-6 py-4">115</td>
+                                    <td class="px-6 py-4">4.8</td>
+                                    <td class="px-6 py-4">2 Days</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" scope="row">
+                                        Effective Communication</th>
+                                    <td class="px-6 py-4">98</td>
+                                    <td class="px-6 py-4">4.7</td>
+                                    <td class="px-6 py-4">1 Day</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Workshops Over Time Chart (Line Chart)
+        const workshopsOverTimeCtx = document.getElementById('workshopsOverTimeChart').getContext('2d');
+        const workshopsOverTimeChart = new Chart(workshopsOverTimeCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Workshops Conducted',
+                    data: [8, 10, 12, 9, 11, 14, 10, 12, 11, 10, 13, 8],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            stepSize: 5
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Attendance Donut Chart
+        const attendanceDonutCtx = document.getElementById('attendanceDonutChart').getContext('2d');
+        const attendanceDonutChart = new Chart(attendanceDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Attended', 'Not Attended'],
+                datasets: [{
+                    data: [88, 12],
+                    backgroundColor: [
+                        '#10b981',
+                        '#e5e7eb'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Department Bar Chart
+        const departmentBarCtx = document.getElementById('departmentBarChart').getContext('2d');
+        const departmentBarChart = new Chart(departmentBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Computer Science', 'Business', 'Engineering', 'Arts', 'Science', 'Law'],
+                datasets: [{
+                    label: 'Participants',
+                    data: [320, 280, 240, 180, 150, 130],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(139, 92, 246, 0.7)',
+                        'rgba(20, 184, 166, 0.7)',
+                        'rgba(244, 63, 94, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(20, 184, 166, 1)',
+                        'rgba(244, 63, 94, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Ratings Chart (Horizontal Bar)
+        const ratingsCtx = document.getElementById('ratingsChart').getContext('2d');
+        const ratingsChart = new Chart(ratingsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['5 Stars', '4 Stars', '3 Stars', '2 Stars', '1 Star'],
+                datasets: [{
+                    label: 'Ratings Distribution',
+                    data: [65, 25, 7, 2, 1],
+                    backgroundColor: [
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(245, 158, 11, 0.6)',
+                        'rgba(245, 158, 11, 0.5)',
+                        'rgba(245, 158, 11, 0.4)',
+                        'rgba(245, 158, 11, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(245, 158, 11, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Location Donut Chart
+        const locationDonutCtx = document.getElementById('locationDonutChart').getContext('2d');
+        const locationDonutChart = new Chart(locationDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Online', 'Offline', 'Hybrid'],
+                datasets: [{
+                    data: [60, 30, 10],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#10b981',
+                        '#f59e0b'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Types Donut Chart
+        const typesDonutCtx = document.getElementById('typesDonutChart').getContext('2d');
+        const typesDonutChart = new Chart(typesDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Technical', 'Non-Technical'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: [
+                        '#8b5cf6',
+                        '#ec4899'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
